@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinay Hatyal - Software Developer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: hsl(220deg 90% 65%);
+            --color-secondary: hsl(260deg 85% 70%);
+            --color-accent: hsl(200deg 80% 60%);
+            --color-text: hsl(222deg 22% 15%);
+            --color-text-muted: hsl(222deg 13% 45%);
+            --color-bg: hsl(0deg 0% 100%);
+            --color-bg-secondary: hsl(220deg 40% 98%);
+            --shadow-sm: 0px 1px 2px hsl(220deg 60% 50% / 0.1);
+            --shadow-md: 0px 4px 8px hsl(220deg 60% 50% / 0.12);
+            --shadow-lg: 0px 8px 16px hsl(220deg 60% 50% / 0.15);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-bg-secondary);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 32px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+            animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 32px;
+        }
+
+        /* .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+        } */
+         .profile-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    background: none; /* remove the gradient if you only want the photo */
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ensures the image covers the div without distortion */
+    display: block;
+}
+
+
+        .profile-image:hover {
+            transform: scale(1.08) rotate(5deg);
+        }
+
+        .profile-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent);
+            opacity: 0;
+            transition: opacity 300ms;
+        }
+
+        .profile-image:hover::after {
+            opacity: 1;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        .profile-image.animate-pop {
+            animation: pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(120deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--color-text-muted);
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .location {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 32px;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .intro-card {
+            background: var(--color-bg);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: var(--shadow-md);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--color-text-muted);
+            transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid transparent;
+        }
+
+        .intro-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+            border-color: var(--color-primary);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--color-bg);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            transform: scaleX(0);
+            transition: transform 300ms;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-8px);
+            border-color: hsl(220deg 40% 95%);
+        }
+
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            transition: transform 300ms;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        .card-meta {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .card p {
+            color: var(--color-text-muted);
+            line-height: 1.7;
+        }
+        .card-description {
+            display: none;
+        }
+        .card-description strong {
+    font-weight: bold;
+}
+
+
+        .card ul {
+            list-style: none;
+            margin-top: 16px;
+        }
+
+        .card li {
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            padding-left: 24px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+        }
+
+        .skill-badge {
+            background: var(--color-bg);
+            padding: 20px 24px;
+            border-radius: 16px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.05rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-badge::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            opacity: 0;
+            transition: opacity 300ms;
+            z-index: -1;
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: var(--shadow-md);
+            color: white;
+        }
+
+        .skill-badge:hover::after {
+            opacity: 1;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: translateY(-4px) scale(1.05) rotate(0deg); }
+            25% { transform: translateY(-4px) scale(1.05) rotate(-3deg); }
+            75% { transform: translateY(-4px) scale(1.05) rotate(3deg); }
+        }
+
+        .skill-badge:active {
+            animation: wiggle 0.3s ease;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 32px;
+            background: var(--color-bg);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: var(--color-text);
+            text-decoration: none;
+        }
+
+        .contact-btn:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px) scale(1.05);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(-4px) scale(1.05); }
+            50% { transform: translateY(-8px) scale(1.08); }
+        }
+
+        .contact-btn:active {
+            animation: bounce 0.3s ease;
+        }
+
+        .download-section {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 48px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+            opacity: 0;
+            transition: opacity 300ms;
+        }
+
+        .download-btn:hover::before {
+            opacity: 1;
+        }
+
+        .download-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .download-btn:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-6px) scale(1.08);
+        }
+
+        @keyframes downloadPulse {
+            0%, 100% { transform: translateY(-6px) scale(1.08); }
+            50% { transform: translateY(-8px) scale(1.12); }
+        }
+
+        .download-btn:active {
+            animation: downloadPulse 0.4s ease;
+        }
+
+        .floating-shapes {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+              transform: translateZ(0);
+    backface-visibility: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+        }
+
+        .shape1 {
+            width: 400px;
+            height: 400px;
+            background: var(--color-primary);
+            top: -100px;
+            right: -100px;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape2 {
+            width: 300px;
+            height: 300px;
+            background: var(--color-secondary);
+            bottom: -50px;
+            left: -50px;
+            animation: float 15s infinite ease-in-out reverse;
+        }
+
+        .shape3 {
+            width: 250px;
+            height: 250px;
+            background: var(--color-accent);
+            top: 50%;
+            left: 50%;
+            animation: float 18s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .education-card {
+            background: var(--color-bg);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid transparent;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .education-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+            border-color: var(--color-primary);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .intro-card {
+                padding: 32px 24px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+            }
+        }
+
+        /* Sound wave animation on click */
+        @keyframes soundWave {
+            0% {
+                box-shadow: 0 0 0 0 rgba(100, 149, 237, 0.7);
+            }
+            100% {
+                box-shadow: 0 0 0 20px rgba(100, 149, 237, 0);
+            }
+        }
+
+        .sound-effect {
+            animation: soundWave 0.6s ease-out;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+             will-change: opacity, transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--color-bg);
+            border-radius: 24px;
+            padding: 48px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 3px solid var(--color-primary);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .modal-close:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 24px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .modal h3 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            color: var(--color-text);
+            text-align: center;
+        }
+
+        .modal-meta {
+            color: var(--color-text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .modal-description {
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+        }
+
+        .modal ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .modal li {
+            color: var(--color-text-muted);
+            line-height: 2;
+            padding-left: 32px;
+            position: relative;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+        }
+
+        .modal li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: white;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 32px 24px;
+            }
+        }
+          
+        .no-underline {
+    text-decoration: none;
+    color: inherit; /* Keeps the link the same color as surrounding text */
+}
+
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <!-- <div class="profile-wrapper">
+                <div class="profile-image" id="profileImg">V</div>
+            </div> -->
+            <div class="profile-wrapper">
+    <div class="profile-image" id="profileImg">
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQFHdn7M_nUGLA/profile-displayphoto-scale_200_200/B56ZoF8SuMJsAY-/0/1761036284568?e=2147483647&v=beta&t=uc4ccpBCG6-1Urzx7MBQzz1PyNXiA2hSAr0pp2HOwNA" alt="Vinay Hatyal" class="profile-photo">
+    </div>
+</div>
+
+            <h1>Vinay Hatyal</h1>
+            <p class="tagline">(Vinay HN)</p>
+            <p class="tagline">Software Developer - Indium Sofware </p>
+            <!-- <p class="location">📍 Tumkur, Karnataka</p> -->
+             📍 <a href="https://www.google.com/maps?q=Tumkur,+Karnataka" target="_blank" rel="noopener noreferrer">
+    Tumkur, Karnataka
+  </a>
+        </header>
+
+        <section class="section">
+            <h2>About Me 👋</h2>
+            <div class="intro-card">
+                As a software developer, I'm driven by a passion for creating efficient, 
+                scalable, and impactful solutions. I enjoy working in innovative, 
+                collaborative environments that challenge me to learn, grow, and 
+                contribute to meaningful products and technologies.
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Education 🎓</h2>
+
+            <div class="education-card">
+                <h3 style="font-size: 1.5rem; color: var(--color-text); margin-bottom: 8px;">
+                    Master of Computer Application (MCA)
+                </h3>
+                <p class="card-meta">Siddaganga Institute of Technology, affiliated to VTU, Tumkur • 2017 – 2020</p>
+                <p style="color: var(--color-text-muted); line-height: 1.7;">
+                    Graduated with a CGPA of <strong>7.49</strong>. Developed a strong understanding of advanced computing concepts, 
+                    software development, and project management.
+                </p>
+            </div>
+
+            <div class="education-card">
+                <h3 style="font-size: 1.5rem; color: var(--color-text); margin-bottom: 8px;">
+                    Bachelor of Computer Application (BCA)
+                </h3>
+                <p class="card-meta">VidyaVahini First Grade College, affiliated to Tumkur University, Tumkur • 2014 – 2017</p>
+                <p style="color: var(--color-text-muted); line-height: 1.7;">
+                    Achieved <strong>74.75%</strong>. Focused on programming, database systems, and computer fundamentals.
+                </p>
+            </div>
+
+            <div class="education-card">
+                <h3 style="font-size: 1.5rem; color: var(--color-text); margin-bottom: 8px;">
+                    XII / Science
+                </h3>
+                <p class="card-meta">VidyaVahini Pre-University College, Tumkur • 2012 – 2014 (KSEEB, Bangalore)</p>
+                <p style="color: var(--color-text-muted); line-height: 1.7;">
+                    Secured <strong>54.83%</strong>. Studied core science subjects including Physics, Chemistry, and Mathematics.
+                </p>
+            </div>
+
+            <div class="education-card">
+                <h3 style="font-size: 1.5rem; color: var(--color-text); margin-bottom: 8px;">
+                    X (SSLC)
+                </h3>
+                <p class="card-meta">Shree Siddalingeshwara Residential Higher Secondary School, Tumkur • 2009 – 2012 (KSEEB, Bangalore)</p>
+                <p style="color: var(--color-text-muted); line-height: 1.7;">
+                    Secured <strong>77.76%</strong>. Completed foundational education with emphasis on mathematics and science.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Technical Skills 💻</h2>
+            <div class="skills-grid">
+                <div class="skill-badge">Python (Beginner)</div>
+                <div class="skill-badge">Core Java (intermediate)</div>
+                <div class="skill-badge">JavaScript (Proficient)</div>
+                <div class="skill-badge">React.js   (Beginner)</div>
+                <div class="skill-badge">Node.js (Proficient)</div>
+                 <div class="skill-badge">Electron.js  (intermediate)</div>
+                <div class="skill-badge"> SQL (Proficient)</div>
+                <div class="skill-badge">MongoDB  (Beginner)</div>
+                <div class="skill-badge">Git  (Proficient)</div> 
+                <div class="skill-badge">Html, CSS (intermediate)</div>
+                <div class="skill-badge"> Cloud computing (AWS intermediate)</div>
+                <div class="skill-badge">Data Structures</div>
+               
+            </div>
+        </section>
+         <section class="section">
+            <h2>Core Skills </h2>
+            <div class="skills-grid">
+                 <div class="skill-badge">Problem Solving</div>
+                <div class="skill-badge">Creative thinking</div>
+                <div class="skill-badge">Time management</div>
+                <div class="skill-badge">Proactive and critical thinking</div>
+                <div class="skill-badge">Professional ethics</div>
+                <div class="skill-badge">Working under pressure</div>
+                 <div class="skill-badge">Team player</div>
+                <div class="skill-badge"> Leadership</div>
+            </div>
+        </section>
+         <section class="section">
+            <h2> Hobbies and Interest</h2>
+            <div class="skills-grid">
+                 <div class="skill-badge"> Photography</div>
+                <div class="skill-badge">Logo designing</div>
+                <div class="skill-badge">Interior designing</div>
+                <div class="skill-badge">Full Stack Development</div>
+                <div class="skill-badge">Data Science</div>
+                <div class="skill-badge">Gen AI</div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Projects & Experience 🚀</h2>
+            <div class="cards-grid">
+                <div class="card">
+    <div class="card-icon">💼</div>
+    <h3>Industrial Experience (4.3 Years)</h3>
+    <p class="card-meta">Indium Software Pvt. Ltd, Chennai</p>
+    <p >
+      <ul>
+          <b> <li>Early Autism Service (EAS) • Aug 2021 – Dec 2021</li> </b>
+           <b> <li> GameMon • Jan 2022 – Sep 2025</li> </b>
+      </ul>     
+    </p>
+
+    <p class="card-description">
+         <b>Early Autism Service (EAS)</b> </br>
+        • The primary aim of project is to provide the best way to develop the potential through proactive, personalized ABA therapy in an autistic child.<br>
+        • It mainly captures the children’s activities in many aspects like Behavior Planning, Fine and Gross Motor Skills, Language and Communication, 
+        Play Skill and Social Skills through the forms filled by Clinical Professionals.<br>
+        • Provides detailed reports and suggestions for further therapy.<br>
+        •I worked in Backend Development (Ruby on Rails), API development & modifications, Swagger documentation.<br><br>
+
+       <b> GameMon</b></br>
+        • The project aim is to provide a cost-effective in-house Desktop application tool for Game-testing team.<br>
+        • Captures device hardware and software usage while running apps/games.<br>
+        • Engineered real-time monitoring of CPU, memory, GPU, FPS, battery, and network (upload/download) using pymobiledevice3 and tshark.<br>
+        • Designed efficient IPC communication between Electron main and renderer processes for real-time data visualization.<br>
+        • Managed project maintenance, bug fixes, and continuous improvements for better stability and performance.<br>
+        • Responsible for backend server development and maintenance, while strengthening understanding of few AWS cloud computing services(Ec2,S3,RDS,Cloud Watch).</br>
+        • Conducted feature demos and technical walkthroughs for internal teams and stakeholders.<br>
+        • My major work in Backend development: RESTful APIs & database design.
+       
+    </p> 
+    <ul class="card-description">
+        <li>Backend development</li>
+        <li>API development and modifications (EAS & Game-On)</li>
+        <li>Database design and management</li>
+        <li>Documentation using Swagger</li>
+        <li>Collaborated with cross-functional teams</li>
+    </ul>
+</div>
+
+                <div class="card">
+                    <div class="card-icon">🔧</div>
+                    <h3>Technical/Academic Projects</h3>
+                    <p class="card-meta">Personal & Academic</p>
+                      <p >
+                        <ul>
+                            <b> <li>Incident reporting System (Internship project).</li> </b>
+                            <b> <li>Cable TV Billing System</li> </b>
+                        </ul>     
+                    </p>
+                
+                    <p class="card-description">
+                        <b>Internship at QuadWave Consulting Pvt. Ltd, Bangalore / Feb 2020 – June 2020.</b></br>
+                         <b> Incident reporting System </b></br>
+                       • The primary aim of project is to record the precise facts of an incident while it is still fresh on everybody's mind while filling up a form and to provide immediate security alert for emergencies, 
+                        capturing first had information from ground zero of the Incident and also seamless tracking and notification of Incidents.</br>
+                       • Worked on lowcode dev tool called “Amper,”  where I developed core modules (Assault, Crime, Fire, Medical), 
+                        handled incident viewing and user profile features, and prepared technical documentation and project reports.</br>
+
+                        <b>Cable TV Billing System</b></br>
+                        • Developed a billing system in Python using Tkinter and smtplib to generate and email customer bills based on selected channel packages, 
+                        including GUI design and full-stack implementation.</br>
+                       • Focused on creating efficient, user-friendly solutions that solve real-world problems.</br>
+                              
+                         <ul class="card-description"> Internship at QuadWave Consulting Pvt. Ltd, Bangalore / Feb 2020 – June 2020.
+                        The primary aim of project is to record the precise facts of an incident while it is still fresh on everybody's mind while filling up a form and to provide immediate security alert for emergencies, 
+                        capturing first had information from ground zero of the Incident and also seamless tracking and notification of Incidents.</ul>
+                        
+                     <ul class="card-description">
+                        
+                        <li>Built few other full-stack applications and systems(small scale) also using modern technologies</li>
+                        <li></li>
+                        <li>Developed database designs and  solutions</li>
+                        <li>Implemented responsive designs</li>
+                    </ul></p>
+                   
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Key Achievements</h3>
+                    <p class="card-meta">Skills & Accomplishments</p>
+                     <p>
+                        <ul>
+                            <b> <li>Quarterly Excellence Award(Gem award) 2023-24 & 2024-25</li></b>
+                             <b> <li>Quarterly Excellence Award(Spot award) 2023-24 </li></b>
+                        </ul>     
+                    </p>
+                    <p class="card-description">Demonstrated strong technical abilities and soft skills throughout academic and professional journey. 
+                        Consistently delivered high-quality work and exceeded expectations.
+                     <ul class="card-description">
+                        <li>Half Year Excellence Award(Outstanding Performance award) 2023-24</li>
+                        <li>Organized college fests and hosted inter-departmental events, designed political awareness posters as part of the Student Committee, 
+                            and volunteered during company campus drives and industrial visits.</li>
+                            <li>Got Letter of appreciation from the principal of the college for organizing the
+                                college festival, Tumkur / 2017.</li>
+                    </ul></p>
+                   
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Let's Connect 🤝</h2>
+            <div class="contact-links">
+                <!-- <a href="mailto:vinay.hatyal@indium.tech" class="contact-btn">
+                    <span>📧</span>
+                    <span>Email Me</span>
+                </a> -->
+               <a href="#" class="contact-btn" onclick="showEmail(); return false;">
+        <span>📧</span>
+        <span>Email Me</span>
+    </a>
+
+
+                <a href="https://in.linkedin.com/in/vinaynhatyal?trk=people-guest_people_search-card" class="contact-btn">
+                    <span>💼</span>
+                    <span>LinkedIn</span>
+                </a>
+                  <a href="#" class="contact-btn" onclick="showNumber(); return false;">
+        <span>📱</span>
+        <span>Call Me</span>
+    </a>
+
+            </div>
+            
+            <div class="download-section">
+                <button class="download-btn" id="downloadBtn" onclick="handleDownload()">
+                    <span>📄</span>
+                    <span>Download Resume PDF</span>
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="modal-icon" id="modalIcon"></div>
+            <h3 id="modalTitle"></h3>
+            <p class="modal-meta" id="modalMeta"></p>
+            <p class="modal-description" id="modalDescription"></p>
+            <ul id="modalList"></ul>
+        </div>
+    </div>
+
+    <script>
+        //telecalling function 
+       function showNumber() {
+    const number = '7760836437';
+    navigator.clipboard.writeText(number);
+    alert(`Phone Number copied to Clipboard:${number}`); // shows "This page says" with your number
+}
+        //email
+        function showEmail() {
+    const email = 'vinay.hatyal@indium.tech';
+    navigator.clipboard.writeText(email);
+    alert(`Email_Id copied to Clipboard:${email}`); // shows "This page says vinay.hatyal@indium.tech"
+}
+
+        // Sound effects using Web Audio API
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(frequency, duration, type = 'sine') {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = frequency;
+            oscillator.type = type;
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+
+        function playClickSound() {
+            playSound(800, 0.1, 'sine');
+            setTimeout(() => playSound(1000, 0.08, 'sine'), 50);
+        }
+
+        function playHoverSound() {
+            playSound(600, 0.05, 'sine');
+        }
+
+        function playSuccessSound() {
+            playSound(523.25, 0.1, 'sine'); // C
+            setTimeout(() => playSound(659.25, 0.1, 'sine'), 100); // E
+            setTimeout(() => playSound(783.99, 0.15, 'sine'), 200); // G
+        }
+
+        function playProfessionalSound() {
+            playSound(392, 0.12, 'sine'); // G
+            setTimeout(() => playSound(523.25, 0.12, 'sine'), 80); // C
+            setTimeout(() => playSound(659.25, 0.15, 'sine'), 160); // E
+        }
+
+        function playProjectSound() {
+            playSound(659.25, 0.08, 'square'); // E
+            setTimeout(() => playSound(783.99, 0.08, 'square'), 60); // G
+            setTimeout(() => playSound(987.77, 0.08, 'square'), 120); // B
+            setTimeout(() => playSound(1046.50, 0.12, 'square'), 180); // C
+        }
+
+        function playAchievementSound() {
+            playSound(523.25, 0.1, 'triangle'); // C
+            setTimeout(() => playSound(659.25, 0.1, 'triangle'), 70); // E
+            setTimeout(() => playSound(783.99, 0.1, 'triangle'), 140); // G
+            setTimeout(() => playSound(1046.50, 0.18, 'triangle'), 210); // High C
+        }
+
+        function playEducationSound() {
+            playSound(440, 0.1, 'sine'); // A
+            setTimeout(() => playSound(554.37, 0.1, 'sine'), 90); // C#
+            setTimeout(() => playSound(659.25, 0.15, 'sine'), 180); // E
+            setTimeout(() => playSound(880, 0.12, 'sine'), 270); // High A
+        }
+
+        // Add sound effects to all interactive elements
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Profile image with sound
+        const profileImage = document.getElementById('profileImg');
+        profileImage.addEventListener('click', function() {
+            playClickSound();
+            this.classList.add('animate-pop');
+            setTimeout(() => this.classList.remove('animate-pop'), 300);
+        });
+
+        // Skill badges with sound
+        document.querySelectorAll('.skill-badge').forEach(badge => {
+            badge.addEventListener('mouseenter', () => playHoverSound());
+            badge.addEventListener('click', function() {
+                playClickSound();
+                this.classList.add('sound-effect');
+                setTimeout(() => this.classList.remove('sound-effect'), 600);
+            });
+        });
+
+        // Cards with sound - assign unique sounds based on card type
+        document.querySelectorAll('.card').forEach((card, index) => {
+            card.addEventListener('mouseenter', () => playHoverSound());
+            card.addEventListener('click', function() {
+                playClickSound();
+                
+                const title = this.querySelector('h3').textContent;
+                if (title.includes('Professional')) {
+                    playProfessionalSound();
+                } else if (title.includes('Projects')) {
+                    playProjectSound();
+                } else if (title.includes('Achievement')) {
+                    playAchievementSound();
+                }
+                
+                openModal(this);
+            });
+        });
+
+        // Contact buttons with sound
+        document.querySelectorAll('.contact-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => playHoverSound());
+            btn.addEventListener('click', () => playClickSound());
+        });
+
+        // Education cards with sound - handle ALL education cards
+        document.querySelectorAll('.education-card').forEach(eduCard => {
+            eduCard.addEventListener('mouseenter', () => playHoverSound());
+            eduCard.addEventListener('click', function() {
+                playClickSound();
+                playEducationSound();
+                openEducationModal(this);
+            });
+        });
+
+        // Download button with special sound
+        const downloadBtn = document.getElementById('downloadBtn');
+        downloadBtn.addEventListener('mouseenter', () => playHoverSound());
+
+        function handleDownload() {
+            playSuccessSound();
+            
+            // const pdfUrl = 'YOUR_PDF_URL_HERE';
+            const pdfUrl = 'https://drive.google.com/file/d/1M5N0aZCERX8NvUmZAeSp2SqNUQDrlk9p/view?usp=sharing';
+            if (pdfUrl === 'YOUR_PDF_URL_HERE') {
+                alert('📄 Setup Required!\n\n1. Upload your PDF to Google Drive\n2. Right-click → Get link → Set to "Anyone with the link"\n3. Copy the link\n4. Replace YOUR_PDF_URL_HERE in the code with your link');
+            } else {
+                const link = document.createElement('a');
+                link.href = pdfUrl;
+                link.download = 'Vinay_Hatyal_Resume.pdf';
+                link.target = '_blank';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+
+        // Mouse parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.shape');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 10;
+                shape.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+
+        // Modal functions
+        // function openModal(cardElement) {
+        //     const modal = document.getElementById('modal');
+        //     const icon = cardElement.querySelector('.card-icon').textContent;
+        //     const title = cardElement.querySelector('h3').textContent;
+        //     const meta = cardElement.querySelector('.card-meta').textContent;
+        //     const description = cardElement.querySelector('.card-description') ? 
+        //         cardElement.querySelector('.card-description').textContent : 
+        //         'Click on any item to learn more about this experience.';
+        //     const listItems = Array.from(cardElement.querySelectorAll('li')).map(li => li.textContent);
+            
+            
+        //     document.getElementById('modalIcon').textContent = icon;
+        //     document.getElementById('modalTitle').textContent = title;
+        //     document.getElementById('modalMeta').textContent = meta;
+        //     document.getElementById('modalDescription').textContent = description;
+            
+        //     const modalList = document.getElementById('modalList');
+        //     modalList.innerHTML = '';
+        //     listItems.forEach(item => {
+        //         const li = document.createElement('li');
+        //         li.textContent = item;
+        //         modalList.appendChild(li);
+        //     });
+            
+        //     modal.classList.add('active');
+        //     document.body.style.overflow = 'hidden';
+        // }
+        function openModal(cardElement) {
+    const modal = document.getElementById('modal');
+    const icon = cardElement.querySelector('.card-icon').textContent;
+    const title = cardElement.querySelector('h3').textContent;
+    const meta = cardElement.querySelector('.card-meta').textContent;
+
+    // 🔹 Use innerHTML instead of textContent — preserves <b>, <br>, etc.
+    const descriptionElement = cardElement.querySelector('.card-description');
+    const description = descriptionElement ? descriptionElement.innerHTML.trim() : 
+        'Click on any item to learn more about this experience.';
+
+    // 🔹 Only pull list items OUTSIDE card-description (avoid duplicate points)
+    const listItems = Array.from(
+        cardElement.querySelectorAll(':scope > ul > li')
+    ).map(li => li.textContent);
+
+    // Assign values to modal
+    document.getElementById('modalIcon').textContent = icon;
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalMeta').textContent = meta;
+
+    // 🔹 Keep HTML formatting (bold, breaks, etc.)
+    document.getElementById('modalDescription').innerHTML = description;
+
+    // Add list items
+    const modalList = document.getElementById('modalList');
+    modalList.innerHTML = '';
+    listItems.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        modalList.appendChild(li);
+    });
+
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+
+        function openEducationModal(educationCard) {
+            const modal = document.getElementById('modal');
+            
+            document.getElementById('modalIcon').textContent = '🎓';
+            document.getElementById('modalTitle').textContent = educationCard.querySelector('h3').textContent;
+            document.getElementById('modalMeta').textContent = educationCard.querySelector('.card-meta').textContent;
+            
+            // Get description text safely
+            const descParagraph = educationCard.querySelector('p[style*="color"]');
+            document.getElementById('modalDescription').textContent = descParagraph ? descParagraph.textContent : '';
+            
+            const modalList = document.getElementById('modalList');
+            
+            // Get the degree title to customize content
+            const degreeTitle = educationCard.querySelector('h3').textContent;
+            
+            if (degreeTitle.includes('MCA') || degreeTitle.includes('Master')) {
+                modalList.innerHTML = `
+                            <li>
+                    <a href="https://www.google.com/maps?q=Siddaganga+Institute+of+Technology,+Tumkur" 
+                    target="_blank" rel="noopener noreferrer" class="no-underline">
+                        <b>SIT 📍</b> 
+                    </a> 
+                </li>
+                   <li>During my MCA, I gained a solid foundation in software engineering and full-stack development,
+                 which shaped my problem-solving mindset and career direction as a developer. 
+                The coursework and projects helped me bridge academic concepts with real-world applications, 
+                emphasizing scalability, performance, and clean code practices.</li>
+                <li>Strengthened communication, team collaboration, and leadership skills through group projects</li>
+                <li>This degree not only refined my technical expertise but also enhanced my interpersonal and problem-solving skills—laying a 
+                    strong foundation for professional growth in dynamic, collaborative environments.</li>
+
+                `;
+            } else if (degreeTitle.includes('BCA') || degreeTitle.includes('Bachelor')) {
+                modalList.innerHTML = `
+                                    <li>
+                        <a href="https://maps.app.goo.gl/uNb2KNrqZzcSa4Ty9" 
+                        target="_blank" rel="noopener noreferrer" class="no-underline">
+                            <b>VVFGC 📍</b> 
+                        </a> https://maps.app.goo.gl/doge9r3csXgziop67
+                    </li>
+                    <li>Core subjects included: Programming in C, C++, Java, Data Structures, Database Management Systems, Web Technologies, and Software Engineering</li>
+                    <li>Built strong fundamentals in computer science principles and programming concepts through rigorous coursework</li>
+                    <li>Developed practical skills through hands-on lab work, mini-projects, and semester projects</li>
+                    <li>Participated in coding competitions, paper presentations, attended seminars in other universities etc</li>
+                    <li>This degree provided the essential foundation and sparked my passion for pursuing advanced studies in computer applications</li>
+                `;
+            } else if (degreeTitle.includes('XII') || degreeTitle.includes('Science')) {
+                modalList.innerHTML = `
+                                    <li>
+                        <a href="https://maps.app.goo.gl/doge9r3csXgziop67" 
+                        target="_blank" rel="noopener noreferrer" class="no-underline">
+                            <b>VVPUC 📍</b> 
+                        </a> 
+                    </li>
+                   
+                    <li>Studied core science subjects: Physics, Chemistry, Mathematics (PCMB stream) with Biology as an additional subject</li>
+                    <li>Prepared for competitive entrance exams like CET and other state-level examinations</li>
+                    <li>This crucial phase helped me discover my passion for computers and solidified my decision to pursue a career in technology</li>
+                `;
+            } else if (degreeTitle.includes('SSLC') || degreeTitle.includes('X (')) {
+                modalList.innerHTML = `
+                 <li>
+    <a href="https://maps.app.goo.gl/HsW8H8gRH5mn3bQL6" 
+       target="_blank" rel="noopener noreferrer" class="no-underline">
+        <b>SSRHSS 📍</b> 
+    </a> 
+</li>
+                    <li>Completed comprehensive foundational education covering Mathematics, Science (Physics, Chemistry, Biology), Social Studies, and Languages</li>
+                    <li>Secured 77.76% demonstrating strong academic capabilities and consistent performance across all subjects</li>
+                    <li>Developed disciplined study habits, time management skills, and exam preparation strategies that proved valuable in higher education</li>
+                    <li>Developed strong moral and spiritual values through guidance inspired by the principles of Siddaganga Mutt</li>
+`;
+            } else {
+                modalList.innerHTML = `
+                    <li>Received comprehensive education covering both theoretical knowledge and practical applications</li>
+                    <li>Strong emphasis on building fundamental academic skills and subject mastery</li>
+                    <li>Active participation in various academic activities, co-curricular programs, and school events</li>
+                    <li>Developed critical thinking, analytical abilities, and effective study methodologies</li>
+                    <li>This education phase built the strong foundation necessary for future academic and professional success</li>
+                `;
+            }
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            playClickSound();
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on outside click
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
