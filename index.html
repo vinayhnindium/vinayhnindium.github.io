@@ -462,9 +462,6 @@
             position: absolute;
             border-radius: 50%;
             opacity: 0.08;
-             will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
         }
 
         .shape1 {
@@ -509,9 +506,6 @@
             border: 2px solid transparent;
             margin-bottom: 20px;
             cursor: pointer;
-             will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
         }
 
         .education-card:hover {
@@ -1148,7 +1142,7 @@
         }
 
         // Mouse parallax effect
-        document.addEventListener('mousemove', (e) => {
+       // document.addEventListener('mousemove', (e) => {
         //     const shapes = document.querySelectorAll('.shape');
         //     const x = e.clientX / window.innerWidth;
         //     const y = e.clientY / window.innerHeight;
